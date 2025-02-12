@@ -44,6 +44,12 @@ spec:
         repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=marianobackstageorg&project=Backstage
         description: This is ${{ parameters.projectName }}
         defaultBranch: master
+
+    - id: create-folder
+      name: Create Folder
+      action: workspace:folder:create
+      input:
+        folderName: Config 
     
     - id: create-custom-branches
       name: Create Custom Branches
