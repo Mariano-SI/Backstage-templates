@@ -53,7 +53,7 @@ spec:
         organization: marianobackstageorg
         project: Backstage
         repository: ${{ parameters.repoName }}
-        previousCommitHash: ${{ steps.publish-azure.outputs.commitHash }}
+        previousCommitHash: ${{ steps['publish-azure'].output.commitHash }}
 
     
     - id: create-custom-branches
