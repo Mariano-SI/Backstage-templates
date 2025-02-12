@@ -1,0 +1,57 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: desafio-backstageio
+  title: Template do desafio Backstage.io
+  description: Template para a criação de um novo repositório no Azure Devops.
+spec:
+  owner: Mariano-SI
+  type: service
+  parameters:
+    - title: Fill in the basic information about the new project
+      required:
+        - projectName
+        - serviceName
+      properties:
+        projectName:
+          title: Name of project
+          type: string
+          description: Unique name of the project
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        serviceName:
+          title: Name of service
+          type: string
+          description: Add a name to the new service
+          ui:options:
+            rows: 5
+    - title: Fill the informations about the new repository
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - dev.azure.com  
+  steps:
+    - id: publish-azure
+      name: Publish to Azure DevOps
+      action: publish:azure
+      input:
+        sourcePath: './Config'
+        repoUrl: ${{ parameters.repoUrl }}
+        description: This is ${{ parameters.projectName }}
+        defaultBranch: master
+    
+    - id: create-custom-branches
+      name: Create Custom Branches
+      action: azure-repos:branches:create
+      input:
+        branchNames: ["develop", "qa", "uat"]
+        organization: ${{ (parameters.repoUrl | parseRepoUrl).organization  }}
+        project: ${{ (parameters.repoUrl | parseRepoUrl).project }}
+        repository: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
