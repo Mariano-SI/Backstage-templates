@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: desafio-backstageio v2
+  name: desafio-backstageio-v2
   title: Template do desafio Backstage.io V2
   description: Template para a criação de um novo repositório no Azure Devops.
 spec:
