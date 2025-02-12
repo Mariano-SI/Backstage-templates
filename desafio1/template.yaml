@@ -45,11 +45,15 @@ spec:
         description: This is ${{ parameters.projectName }}
         defaultBranch: master
 
-    - id: create-folder
+    - id: create-folder-and-push-folder
       name: Create Folder
-      action: workspace:folder:create
+      action: azure:create-folder-and-push
       input:
         folderName: Config 
+        organization: marianobackstageorg
+        project: Backstage
+        repository: ${{ parameters.repoName }}
+        
     
     - id: create-custom-branches
       name: Create Custom Branches
