@@ -28,22 +28,20 @@ spec:
             rows: 5
     - title: Fill the informations about the new repository
       required:
-        - repoUrl
+        - repoName
       properties:
-        repoUrl:
-          title: Repository Location
+        repoName:
+          title: Name of the repository
           type: string
-          ui:field: RepoUrlPicker
+          description: Unique name of the project
           ui:options:
-            allowedHosts:
-              - dev.azure.com  
+            rows: 5 
   steps:
     - id: publish-azure
       name: Publish to Azure DevOps
       action: publish:azure
       input:
-        sourcePath: './Config'
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=marianobackstageorg&project=Backstage
         description: This is ${{ parameters.projectName }}
         defaultBranch: master
     
