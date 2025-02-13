@@ -54,6 +54,7 @@ spec:
         project: Backstage
         repository: ${{ parameters.repoName }}
         previousCommitHash: ${{ steps['publish-azure'].output.commitHash }}
+        branchName: master
 
     - id: create-file-and-push
       name: Create file
@@ -64,6 +65,7 @@ spec:
         organization: marianobackstageorg
         project: Backstage
         repository: ${{ parameters.repoName }}
+        branchName: master
         previousCommitHash: ${{ steps['create-folder-and-push'].output.commitId }}
         fileContent: |
           {
