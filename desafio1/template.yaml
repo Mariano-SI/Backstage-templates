@@ -45,7 +45,7 @@ spec:
         description: This is ${{ parameters.projectName }}
         defaultBranch: master
 
-    - id: create-folder-and-push-folder
+    - id: create-folder-and-push
       name: Create Folder
       action: azure:create-folder-and-push
       input:
@@ -54,6 +54,22 @@ spec:
         project: Backstage
         repository: ${{ parameters.repoName }}
         previousCommitHash: ${{ steps['publish-azure'].output.commitHash }}
+
+    - id: create-file-and-push
+      name: Create file
+      action: azure:create-file-and-push
+      input:
+        filePath: Config/
+        fileName: config.json
+        organization: marianobackstageorg
+        project: Backstage
+        repository: ${{ parameters.repoName }}
+        previousCommitHash: ${{ steps['create-folder-and-push'].output.commitId }}
+        fileContent: |
+          {
+            "projeto": "${{ parameters.projectName }}",
+            "serviço": "${{ parameters.serviceName }}"
+          }
 
     
     - id: create-custom-branches
