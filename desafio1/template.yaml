@@ -82,3 +82,7 @@ spec:
         organization: marianobackstageorg
         project: Backstage
         repository: ${{ parameters.repoName }}
+  output:
+    links:
+      - title: "Link do repositório"
+        url: ${{ steps['publish-azure'].output.remoteUrl }}
