@@ -76,3 +76,8 @@ spec:
       input:
         repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
+  output:
+    links:
+      - title: "Link of generated repository"
+        url: ${{ steps['publish-azure'].output.remoteUrl }}
+        icon: "cloud"
