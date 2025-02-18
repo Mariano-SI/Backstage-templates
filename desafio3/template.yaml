@@ -12,7 +12,7 @@ spec:
       required:
         - name
         - description
-        - repoUrl
+        - repoName
       properties:
         name:
           title: Name
