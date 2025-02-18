@@ -70,8 +70,8 @@ spec:
         project: Backstage
         repository: ${{ parameters.repoName }}
     
-    - id: Register 
-      name: Register
+    - id: register 
+      name: Register in catalog
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
@@ -81,4 +81,6 @@ spec:
     links:
       - title: "Link of generated repository"
         url: ${{ steps['publish-azure'].output.remoteUrl }}
-        icon: "cloud"
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
