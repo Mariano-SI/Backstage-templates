@@ -42,6 +42,16 @@ spec:
         values:
           name: ${{ parameters.name }}
           description: ${{parameters.description}}
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypassword
+          POSTGRES_DATABASE_NAME: mydatabase
+          PORT: 3333
+          AZURE_TOKEN: 1EVazuhygElrSX3igvPVJ9hGp19bN024tjMAts66tZNpu7MjJq2iJQQJ99BBACAAAAAAAAAAAAASAZDO13pX
+          SA_FRONTEND_URL: http://localhost:3000/
+          SA_BACKEND_URL: http://localhost:7007/
+
 
     - id: publish-azure
       name: Publish to Azure DevOps
