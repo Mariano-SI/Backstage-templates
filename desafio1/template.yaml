@@ -86,3 +86,5 @@ spec:
     links:
       - title: "Link do repositório"
         url: ${{ steps['publish-azure'].output.remoteUrl }}
+        icon: "cloud"
+        
