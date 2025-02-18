@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: teste-mariano-node-oop
+  name: desafio3-api-node
   title: Desafio 3 API NodeJS OOP
   description: Template para a criação de uma api node js com banco de dados portgres.
 spec:
