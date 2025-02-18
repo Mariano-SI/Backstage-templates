@@ -1,0 +1,68 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: teste-mariano-node-oop
+  title: Desafio 3 API NodeJS OOP
+  description: Template para a criação de uma api node js com banco de dados portgres.
+spec:
+  owner: 'Mariano-SI'
+  type: service
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+        - description
+        - repoUrl
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        description:
+          title: Description
+          type: string
+          description: Add a description to the new component
+          ui:options:
+            rows: 5
+        repoName:
+          title: Name of the repository
+          type: string
+          description: Unique name of the project
+          ui:options:
+            rows: 5
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: https://github.com/Mariano-SI/Backstage-templates/tree/master/desafio3/contents
+        values:
+          name: ${{ parameters.name }}
+          description: ${{parameters.description}}
+
+    - id: publish-azure
+      name: Publish to Azure DevOps
+      action: publish:azure
+      input:
+        repoUrl: dev.azure.com?repo=${{ parameters.repoName }}&organization=marianobackstageorg&project=Backstage
+        description: This is ${{ parameters.projectName }}
+        defaultBranch: master
+    
+    - id: create-custom-branches
+      name: Create Custom Branches
+      action: azure-repos:branches:create
+      input:
+        branchNames: ["develop", "qa", "uat"]
+        organization: marianobackstageorg
+        project: Backstage
+        repository: ${{ parameters.repoName }}
+    
+    - id: Register 
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'

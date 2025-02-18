@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{ values.name | dump }}
+  description: ${{ values.description | dump }}
+spec:
+  type: service
+  owner: Mariano-SI
+  lifecycle: experimental
