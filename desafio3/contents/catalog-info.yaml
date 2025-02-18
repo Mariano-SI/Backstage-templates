@@ -3,6 +3,12 @@ kind: System
 metadata:
   name: ${{ values.name | dump }}
   description: ${{ values.description | dump }}
+  tags:
+    - nodejs
+    - express
+    - postgres
+    - typescript
+    - api
 spec:
   type: service
   owner: Mariano-SI
