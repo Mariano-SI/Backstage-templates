@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Test create release pipeline
+  name: create-release-pipeline
   title: Create release pipeline
   description: Create a release pipeline for a service
 spec:
