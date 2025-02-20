@@ -4,6 +4,11 @@ metadata:
   name: create-release-pipeline
   title: Create release pipeline
   description: Create a release pipeline for a service
+  tags: 
+    - pipeline
+    - azure-devops
+    - service
+    - ci/cd
 spec:
   owner: user:guest
   type: service
