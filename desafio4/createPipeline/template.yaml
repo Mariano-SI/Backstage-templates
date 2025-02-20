@@ -20,5 +20,5 @@ spec:
         project: Backstage
         repository: testeaovivo
         mainBranch: master
-        pipelineName: testeaovivo-release
+        pipelineName: CassianeMS
         #sourcePipelineId: 1
