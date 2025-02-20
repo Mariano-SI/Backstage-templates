@@ -21,4 +21,4 @@ spec:
         repository: testeaovivo
         mainBranch: master
         pipelineName: testeaovivo-release
-        sourcePipelineId: 1
+        #sourcePipelineId: 1
