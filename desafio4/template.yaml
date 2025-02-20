@@ -8,7 +8,6 @@ metadata:
     - pipeline
     - azure-devops
     - service
-    - ci/cd
 spec:
   owner: user:guest
   type: service
