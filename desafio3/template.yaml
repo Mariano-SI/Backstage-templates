@@ -77,6 +77,25 @@ spec:
         repoContentsUrl: ${{ steps['publish-azure'].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
+    - id: create-release-pipeline
+      name: Create release pipeline
+      action: azure-devops:release-pipeline:create
+      input:
+        organization: marianobackstageorg
+        project: Backstage
+        repository: ${{ parameters.repoName }}
+        mainBranch: master
+        pipelineName: ${{ parameters.repoName }}
+
+    - id: synchronize-azure-devops-pipelines
+      name: Synchronize Azure DevOps Pipelines
+      action: azure-devops:release-pipeline:synchronize
+      input:
+        organization: marianobackstageorg
+        project: Backstage
+        sourcePipelineId: 1
+        targetPipelineId: ${{ steps['create-release-pipeline'].output.createdPipelineId }}
+
   output:
     links:
       - title: "Link of generated repository"
