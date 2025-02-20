@@ -1,0 +1,22 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: synchronize-azure-devops-pipelines
+  title: Synchronize Azure DevOps Pipelines
+  description: Synchronizes two Azure Devops pipelines by cloning all stages and actions from one to the other
+  tags: 
+    - pipeline
+    - azure-devops
+    - service
+spec:
+  owner: user:guest
+  type: service
+  steps:
+    - id: synchronize-azure-devops-pipelines
+      name: Synchronize Azure DevOps Pipelines
+      action: azure-devops:release-pipeline:synchronize
+      input:
+        organization: marianobackstageorg
+        project: Backstage
+        sourcePipelineId: 1
+        targetPipelineId: 16
