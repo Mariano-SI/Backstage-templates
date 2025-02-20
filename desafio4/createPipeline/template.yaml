@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: create-release-pipeline
-  title: Create release pipeline
+  name: create-release-pipeline-novo
+  title: Create release pipeline novo
   description: Create a release pipeline for a service
   tags: 
     - pipeline
