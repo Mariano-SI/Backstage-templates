@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: synchronize-azure-devops-pipelines
   title: Synchronize Azure DevOps Pipelines
-  description: Synchronizes two Azure Devops pipelines by cloning all stages and actions from one to the other
+  description: Synchronizes two Azure DevOps pipelines by cloning all stages and actions from one to the other
   tags: 
     - pipeline
     - azure-devops
@@ -11,6 +11,20 @@ metadata:
 spec:
   owner: user:guest
   type: service
+  parameters:
+    - title: Pipeline Configuration
+      required:
+        - sourcePipelineId
+        - targetPipelineId
+      properties:
+        sourcePipelineId:
+          title: Source Pipeline ID
+          description: The ID of the source Azure DevOps pipeline
+          type: number
+        targetPipelineId:
+          title: Target Pipeline ID
+          description: The ID of the target Azure DevOps pipeline
+          type: number
   steps:
     - id: synchronize-azure-devops-pipelines
       name: Synchronize Azure DevOps Pipelines
@@ -18,5 +32,5 @@ spec:
       input:
         organization: marianobackstageorg
         project: Backstage
-        sourcePipelineId: 1
-        targetPipelineId: 24
+        sourcePipelineId: ${{ parameters.sourcePipelineId }}
+        targetPipelineId: ${{ parameters.targetPipelineId }}
