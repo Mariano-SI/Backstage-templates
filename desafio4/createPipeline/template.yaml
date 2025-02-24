@@ -11,6 +11,15 @@ metadata:
 spec:
   owner: user:guest
   type: service
+  parameters:
+    - title: Pipeline Configuration
+      required:
+        - pipelineName
+      properties:
+        pipelineName:
+          title: Pipeline Name
+          description: The name of the pipeline to create
+          type: string
   steps:
     - id: create-release-pipeline
       name: Create release pipeline
@@ -20,5 +29,5 @@ spec:
         project: Backstage
         repository: testeaovivo
         mainBranch: master
-        pipelineName: CassianeMS
-        #sourcePipelineId: 1
+        pipelineName: ${{ parameters.pipelineName }}
+        sourcePipelineId: 1
