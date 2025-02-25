@@ -12,19 +12,21 @@ spec:
   owner: user:guest
   type: service
   parameters:
-    - title: Pipeline Configuration
+    - title: Pipelines Configuration
       required:
-        - sourcePipelineId
-        - targetPipelineId
+        - sourcePipeline
+        - targetPipeline
       properties:
-        sourcePipelineId:
-          title: Source Pipeline ID
-          description: The ID of the source Azure DevOps pipeline
-          type: number
-        targetPipelineId:
-          title: Target Pipeline ID
-          description: The ID of the target Azure DevOps pipeline
-          type: number
+        sourcePipeline:
+          title: Source Pipeline 
+          description: This is the pipeline that will be used as a basis for synchronization
+          type: object
+          ui:field: AzureDevopsReleasePipelinesSelect
+        targetPipeline:
+          title: Target Pipeline 
+          description: This is the pipeline that will be the target of synchronization
+          type: object
+          ui:field: AzureDevopsReleasePipelinesSelect
   steps:
     - id: synchronize-azure-devops-pipelines
       name: Synchronize Azure DevOps Pipelines
@@ -32,5 +34,5 @@ spec:
       input:
         organization: marianobackstageorg
         project: Backstage
-        sourcePipelineId: ${{ parameters.sourcePipelineId }}
-        targetPipelineId: ${{ parameters.targetPipelineId }}
+        sourcePipelineId: ${{ parameters.sourcePipeline.id }}
+        targetPipelineId: ${{ parameters.targetPipeline.id }}
