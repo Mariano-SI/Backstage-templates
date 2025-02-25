@@ -15,11 +15,41 @@ spec:
     - title: Pipeline Configuration
       required:
         - pipelineName
+        - repository
       properties:
         pipelineName:
           title: Pipeline Name
           description: The name of the pipeline to create
           type: string
+        repository:
+          title: Repository Name
+          description: Which repository will this release pipeline belong to?
+          type: object
+          ui:field: AzureDevOpsRepoSelect
+    - title: Source pipeline configuration
+      required:
+        - haveSource
+      properties:
+        haveSource:
+          title: The new pipeline will be created based on another existing pipeline
+          type: boolean
+          ui:widget: radio
+      dependencies:
+        haveSource:
+          oneOf:
+            - properties:
+                haveSource:
+                  const: false
+            - properties:
+                haveSource:
+                  const: true
+                sourcePipeline:
+                  title: Source Pipeline 
+                  description: This is the pipeline that will be used as a basis for creation
+                  type: object
+                  ui:field: AzureDevopsReleasePipelinesSelect
+                  ui:options:
+                    label: "Select the source pipeline"
   steps:
     - id: create-release-pipeline
       name: Create release pipeline
@@ -27,7 +57,7 @@ spec:
       input:
         organization: marianobackstageorg
         project: Backstage
-        repository: testeaovivo
-        mainBranch: master
+        repository: ${{ parameters.repository.name }}
+        mainBranch: ${{ parameters.repository.defaultBranch }}
         pipelineName: ${{ parameters.pipelineName }}
-        sourcePipelineId: 1
+        sourcePipelineId: ${{ parameters.sourcePipeline.id | default('') }}
