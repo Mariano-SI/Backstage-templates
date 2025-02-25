@@ -22,11 +22,15 @@ spec:
           description: This is the pipeline that will be used as a basis for synchronization
           type: object
           ui:field: AzureDevopsReleasePipelinesSelect
+          ui:options:
+            label: "Select the source pipeline"
         targetPipeline:
           title: Target Pipeline 
           description: This is the pipeline that will be the target of synchronization
           type: object
           ui:field: AzureDevopsReleasePipelinesSelect
+          ui:options:
+            label: "Select the target pipeline"
   steps:
     - id: synchronize-azure-devops-pipelines
       name: Synchronize Azure DevOps Pipelines
